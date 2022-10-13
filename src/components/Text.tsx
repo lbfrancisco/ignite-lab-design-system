@@ -6,20 +6,20 @@ export interface TextProps {
   size?: 'sm' | 'md' | 'lg',
   children: ReactNode,
   asChild?: boolean,
-  styles?: string, 
+  className?: string, 
 }
 
-export function Text({ size = 'md', children, asChild, styles }: TextProps) {
+export function Text({ size = 'md', children, asChild, className }: TextProps) {
   const Component = asChild ? Slot : 'span'
-  const Style = styles != null ? styles : 'text-gray-100 font-sans';
 
   return (
-    <Component className={clsx(Style,
+    <Component className={clsx('text-gray-100 font-sans',
       {
         'text-xs': size ==='sm',
         'text-sm': size ==='md',
         'text-md': size === 'lg',
-      }
+      },
+      className
     )}
     >
       { children }
